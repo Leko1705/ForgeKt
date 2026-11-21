@@ -1,0 +1,29 @@
+// Tiny: a small language built with Forge. Run Main.kt to analyse this file.
+
+fun sum(n: int): int {
+    var total = 0
+    var i = 0
+    while (i < n && i < 100) {          // && as a condition: pure jumps
+        total = total + i
+        i = i + 1
+    }
+    return total
+}
+
+fun clamp(x: int, limit: int, enabled: bool): int {
+    var result = x
+    var unused = 42                      // warning: never used
+    var tooBig = enabled && !(x < limit) // && as a value: produces true / false
+    if (tooBig) {
+        result = limit
+    }
+    return result
+}
+
+fun broken(flag: bool): int {
+    var y = flag + 1                     // error: bool + int
+    if (y) {
+        y = 2                            // warning: never used
+    }
+    return missing                       // error: unknown variable
+}
